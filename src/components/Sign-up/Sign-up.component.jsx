@@ -22,7 +22,7 @@ class SignUp extends React.Component{
 
     handleSubmit=async event=>{
         event.preventDefault();
-        const {email, password, displayName, confirmPassword}=this.state;
+        const [email, password, displayName, confirmPassword]=this.state;
 
         if(password !== confirmPassword){
             alert("Password Doesn't match!");
@@ -47,7 +47,7 @@ class SignUp extends React.Component{
     };
 
     handleChange = event =>{
-        const { name, value } = event.target;
+        const [  name, value ] = event.target;
         this.setState({[name]:value}); 
      };
     render(){
