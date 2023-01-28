@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import HomePage from '../src/pages/homepage/HomePage.component';
-import {Routes, Route }  from "react-router-dom";
+import {Routes, Route, Navigate }  from "react-router-dom";
 import ShopPage from './pages/Shop/Shop.component';
  import Header from './components/Header/Header.component';
  import SignInAndSignUp from './pages/Sign-in-and-sign-Up/Sign-in-and-sign-up.component';
@@ -10,8 +10,6 @@ import ShopPage from './pages/Shop/Shop.component';
 import { connect } from 'react-redux';
 
 class App extends React.Component {
-  
-
   unsubscribeFromAuth=null;
 
   componentDidMount(){
@@ -27,12 +25,9 @@ class App extends React.Component {
              id:snapShot.id,
                 ...snapShot.data()
           })
-            })
-          
-      
+            });
       }else
-      setCurrentUser({userAuth})
-      
+      setCurrentUser(null)
     })
   }
 
@@ -47,15 +42,17 @@ componentWillUnmount(){
         <Routes>
            <Route  path='/' element={<HomePage />} />  
            <Route path='/shop' element={<ShopPage />} />
-           <Route path='/signin' element={<SignInAndSignUp />} />
-           
+           <Route exact path='/signin' element={this.props.currentUser ?(<Navigate to='/'/> ):(<SignInAndSignUp />)}/>
         </Routes> 
     </div>
   );
   } 
 }
+const mapStateToProps=({user})=>({
+  currentUser:user.currentUser
+})
  const mapDispatchToProps=dispatch=>({
    setCurrentUser:user=>dispatch(setCurrentUser(user))
  })
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

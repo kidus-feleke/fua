@@ -9,9 +9,9 @@ const initialState= {
      name:'user', 
      initialState,
      reducers:{
-         setCurrentUser:(state, user)=>{
-             state.currentUser=user
-         },
+         setCurrentUser:(state, action)=>{
+             state.currentUser=action.payload
+         }
      }
   })
 export default userSlice.reducer;

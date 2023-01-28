@@ -1,6 +1,4 @@
 import React from "react";
-
-
 import { Link } from "react-router-dom";
 import './Header.styles.scss';
 import {ReactComponent as Logo} from '../../Assets/crown.svg'
@@ -24,16 +22,16 @@ const Header=({currentUser})=>{
         </Link>
             {
             currentUser ?
-            (<div className="option" onClick={()=> auth.signOut() }>SIGN OUT</div>)
+            <div className="option" onClick={()=> auth.signOut()}>SIGN OUT</div>
             :
-            (<Link className="option" to='/signIn'>SIGN IN</Link>)
+            <Link className="option" to='/signIn'>SIGN IN </Link>
             }
     </div>
     </div>
 )}
- const mapStateToProps=(state)=>({
-     currentUser:state.user.currentUser
- })
+ const mapStateToProps=state=>({
+     currentUser: state.user.currentUser
+ });
 
-//    
+   
 export default  connect(mapStateToProps)(Header);
