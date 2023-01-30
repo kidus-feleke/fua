@@ -1,6 +1,6 @@
 .cartDropdown{
     position: absolute;
-    width: 300px;
+    width: 350px;
     height: 340px;
     display:flex;
     flex-direction: column;
@@ -12,7 +12,8 @@
     top: 80px;
     z-index: 5;
 
-    .cartItem{
+    .cartItems{
+        
         height: 240px;
         display: flex;
         flex-direction: column;
